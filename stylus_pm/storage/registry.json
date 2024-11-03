@@ -1,0 +1,16 @@
+{
+  "contracts": {
+    "Token": [
+      {
+        "name": "Token",
+        "version": "1.0.0",
+        "author": "Your Name",
+        "description": "A simple ERC20 token contract",
+        "dependencies": {},
+        "checksum": "25c9edeeea29dd24ea89847542bfc3bd346f706c5ce6fb013547f3509eef5673",
+        "filename": "Token-1.0.0.sol"
+      }
+    ]
+  },
+  "storage_path": "storage"
+}

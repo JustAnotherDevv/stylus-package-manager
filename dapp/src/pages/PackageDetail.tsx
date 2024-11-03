@@ -16,7 +16,7 @@ import { Package } from "../types";
 
 const MOCK_PACKAGES: Package[] = [
   {
-    id: "1",
+    id: "0",
     name: "stylus-erc20",
     description: "ERC20 implementation for Arbitrum Stylus",
     owner: "0x1234...5678",
@@ -40,7 +40,7 @@ const MOCK_PACKAGES: Package[] = [
     tags: ["erc20", "token", "stylus"],
   },
   {
-    id: "2",
+    id: "1",
     name: "stylus-nft",
     description:
       "Complete NFT implementation with metadata support for Arbitrum Stylus",
@@ -49,7 +49,40 @@ const MOCK_PACKAGES: Package[] = [
       {
         version: "1.1.2",
         verificationStatus: "verified",
-        sourceCode: "source code here",
+        sourceCode: `use alloc::{ string::String, vec, vec::Vec };
+use alloy_primitives::{ b256, Address, U256 };
+use alloy_sol_types::{ sol, SolError };
+use core::{ borrow::BorrowMut, marker::PhantomData };
+use stylus_sdk::{ abi::Bytes, evm, msg, prelude::* };
+
+pub trait ERC1155Params {
+    /// Immutable NFT name.
+    const NAME: &'static str;
+
+    /// Immutable NFT symbol.
+    const SYMBOL: &'static str;
+
+    /// The NFT's Uniform Resource Identifier.
+    fn token_uri(token_id: U256) -> String;
+}
+
+sol_storage! {
+    /// ERC721 implements all ERC-721 methods
+    pub struct ERC1155<T: ERC721Params> {
+        mapping(address => mapping(uint256 => uint256)) balanceOf;
+        mapping(address => mapping(address => bool)) isApprovedForAll;
+        PhantomData<T> phantom;
+    }
+}
+
+// Declare events and Solidity error types
+sol! {
+    event TransferSingle(
+        address indexed from,
+        address indexed to,
+        uint256 id,
+    );
+    event TransferBatch(`,
         timestamp: "2024-03-20",
         contractAddress: "0xdef...789",
         deploymentHash: "0xhash2...",
@@ -57,7 +90,7 @@ const MOCK_PACKAGES: Package[] = [
       {
         version: "1.0.0",
         verificationStatus: "verified",
-        sourceCode: "initial source code",
+        sourceCode: "# initial source code",
         timestamp: "2024-02-15",
         contractAddress: "0xold...789",
         deploymentHash: "0xoldhash...",
@@ -73,7 +106,7 @@ const MOCK_PACKAGES: Package[] = [
     tags: ["nft", "erc721", "metadata", "stylus"],
   },
   {
-    id: "3",
+    id: "2",
     name: "stylus-vault",
     description:
       "Secure multi-signature vault implementation for asset management",
@@ -98,7 +131,7 @@ const MOCK_PACKAGES: Package[] = [
     tags: ["vault", "multisig", "security", "stylus"],
   },
   {
-    id: "4",
+    id: "3",
     name: "stylus-amm",
     description: "Automated Market Maker implementation with optimal routing",
     owner: "0x7777...8888",
@@ -187,7 +220,7 @@ impl From<stylus_sdk::call::Error> for ERC721Error {
     tags: ["defi", "amm", "swap", "stylus"],
   },
   {
-    id: "5",
+    id: "4",
     name: "stylus-governor",
     description: "Flexible DAO governance implementation with timelock",
     owner: "0x8888...9999",
@@ -214,7 +247,7 @@ impl From<stylus_sdk::call::Error> for ERC721Error {
 
 export default function PackageDetail() {
   const { id } = useParams<{ id: string }>();
-  const pkg = MOCK_PACKAGES[id || ""];
+  const pkg = MOCK_PACKAGES[id - 1 || ""];
   const [selectedVersion, setSelectedVersion] = useState(
     pkg?.versions[0].version
   );
