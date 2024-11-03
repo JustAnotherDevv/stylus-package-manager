@@ -1,0 +1,5 @@
+name = "Token"
+version = "1.0.0"
+author = "Your Name"
+description = "A simple ERC20 token contract"
+dependencies = {}

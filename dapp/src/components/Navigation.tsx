@@ -15,7 +15,7 @@ export default function Navigation() {
             <Link to="/" className="flex items-center">
               <Package className="h-8 w-8 text-purple-600" />
               <span className="ml-2 text-xl font-bold text-gray-900">
-                Stylus Registry
+                Stylus Package Manager
               </span>
             </Link>
 
