@@ -44,6 +44,12 @@ flowchart TB
     class PKG_REGISTRY,METADATA,VERSIONS,SOCIAL contract
 ```
 
+![Screenshot 2024-11-03 at 17.12.45.png](https://cdn.dorahacks.io/static/files/192f296a552c6acfbdb4cb84577a096f.png)
+
+![Screenshot 2024-11-03 at 17.12.50.png](https://cdn.dorahacks.io/static/files/192f296d12a9715865536bb426b820fd.png)
+
+![Screenshot 2024-11-03 at 17.13.11.png](https://cdn.dorahacks.io/static/files/192f296f5d9951b85c0fbc244969957d.png)
+
 ## Deployments
 
 - V1 - `0x9a6ad25b3ea706008a31b877823def127442f63b`
